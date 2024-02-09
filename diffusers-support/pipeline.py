@@ -203,6 +203,8 @@ class DepthControlUNet(torch.nn.Module):
             controlnet_cond=control_depth,
             conditioning_scale=self.conditioning_scale,
             return_dict=False,
+
+        print("DEPTHCONTROLUNET FORWARD")
         )
         return self.unet(
             sample,
@@ -339,7 +341,9 @@ class Zero123PlusPipeline(diffusers.StableDiffusionPipeline):
         return_dict=True,
         **kwargs
     ):
+        print("SECOND ONE")
         self.prepare()
+
         if image is None:
             raise ValueError("Inputting embeddings not supported for this pipeline. Please pass an image.")
         assert not isinstance(image, torch.Tensor)
@@ -407,6 +411,8 @@ class Zero123PlusPipeline(diffusers.StableDiffusionPipeline):
             image = latents
 
         image = self.image_processor.postprocess(image, output_type=output_type)
+ #       image.save("test_image.png")
+#        print("saved image")
         if not return_dict:
             return (image,)
 

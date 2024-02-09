@@ -81,6 +81,8 @@ class Predictor(BasePredictor):
             filename = f"/tmp/output{i}.jpg"
             output_img.save(filename)
             outputs.append(filename)
+            output_img.save(f"../test_output_{i}.jpg")
+            print("FILENAME & output_img: ", filename, output_img)
         
         return([Path(output) for output in outputs])
 
